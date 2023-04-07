@@ -1,0 +1,10 @@
+{
+  "name": "vim-pandoc-preview",
+  "version": "0.0.1",
+  "description": "Preview markdown file in your browser with custom pandoc compilation",
+  "repository": "https://github.com/RolfSievert/vim-pandoc-preview",
+  "author": "Rolf Sievert <26115145+RolfSievert@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
