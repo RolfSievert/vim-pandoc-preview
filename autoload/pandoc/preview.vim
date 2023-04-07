@@ -31,26 +31,25 @@ fu! s:bufferChanged()
 endfu
 
 fu! s:generateHtml(outputPath, markdownText)
-    let args = ''
-
     let job_id = jobstart([
             \ 'pandoc',
             \ '--standalone',
             \ '--toc',
-            \ '--css', g:pandoc_preview_css,
-            \ '--template='.g:pandoc_preview_template,
+            \ '--css', b:pandoc_preview_css,
+            \ '--template='.b:pandoc_preview_template,
             \ '--from='.g:pandoc_preview_format,
             \ '-o', a:outputPath
         \ ],
         \ extend({'shell': 'pandoc'}, s:callbacks))
+
     if job_id == 0
         echo 'wrong arguments'
     elseif job_id == -1
         echo 'cannot run shell'
     endif
+
     call chansend(job_id, a:markdownText)
     call chanclose(job_id, 'stdin')
-
 endfu
 
 

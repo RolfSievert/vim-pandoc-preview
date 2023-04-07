@@ -12,17 +12,24 @@ if !exists('g:pandoc_preview_port')
     let g:pandoc_preview_port = 9009
 endif
 
-if !exists('g:pandoc_preview_css')
-    let g:pandoc_preview_css = $HOME.'/projects/chaos-rpg/chaos.css'
-endif
-
-if !exists('g:pandoc_preview_template')
-    let g:pandoc_preview_template = $HOME.'/projects/chaos-rpg/template.html'
-endif
-
 if !exists('g:pandoc_preview_format')
     let g:pandoc_preview_format = 'gfm'
 endif
+
+let s:plugindir = expand('<sfile>:p:h:h:h:h')
+
+if !exists('g:pandoc_preview_css')
+    let b:pandoc_preview_css = s:plugindir.'/data/style.css'
+else
+    let b:pandoc_preview_css = g:pandoc_preview_css
+endif
+
+if !exists('g:pandoc_preview_template')
+    let b:pandoc_preview_template = s:plugindir.'/data/template.html'
+else
+    let b:pandoc_preview_template = g:pandoc_preview_template
+endif
+
 
 """ Set buffer local variables
 
