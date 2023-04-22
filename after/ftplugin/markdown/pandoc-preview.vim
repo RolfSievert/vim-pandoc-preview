@@ -18,16 +18,18 @@ endif
 
 let s:plugindir = expand('<sfile>:p:h:h:h:h')
 
-if !exists('g:pandoc_preview_css')
-    let b:pandoc_preview_css = s:plugindir.'/data/style.css'
-else
-    let b:pandoc_preview_css = g:pandoc_preview_css
-endif
-
+" check if template is set
 if !exists('g:pandoc_preview_template')
-    let b:pandoc_preview_template = s:plugindir.'/data/template.html'
+    let b:pandoc_preview_template = s:plugindir.'/data/templates/bootstrap.html'
+elseif (g:pandoc_preview_template == 'bootstrap')
+    let b:pandoc_preview_template = s:plugindir.'/data/templates/bootstrap.html'
 else
     let b:pandoc_preview_template = g:pandoc_preview_template
+endif
+
+" check if css is set
+if exists('g:pandoc_preview_css')
+    let b:pandoc_preview_css = g:pandoc_preview_css
 endif
 
 
