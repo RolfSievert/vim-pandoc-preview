@@ -7,6 +7,7 @@ This plugin makes it possible for you to use your custom `pandoc` style sheets a
 # TODO
 
 - Override style sheet and template if either is present in the working directory
+- Add command to generate html file instead of always generating it when previewing
 
 # Requirements
 
