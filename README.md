@@ -34,10 +34,10 @@ Follow links for installation instructions:
 
 ```vim
 " Specify a custom style sheet for html generation
-let g:pandoc_preview_css = 'path to template'
+let g:pandoc_preview_css = 'path/to/style_sheet.css'
 
 " Specify a custom template for html generation
 " or the following options (implicitly points to files in '.../vim-pandoc-preview/data/templates/'):
 "   - 'bootstrap' (default)
-let g:pandoc_preview_template = 'path to template'
+let g:pandoc_preview_template = 'path/to/template.html'
 ```
