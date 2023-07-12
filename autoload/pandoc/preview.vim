@@ -31,15 +31,24 @@ fu! s:bufferChanged()
 endfu
 
 fu! s:generateHtml(outputPath, markdownText)
-    let job_id = jobstart([
+    let args = [
             \ 'pandoc',
             \ '--standalone',
             \ '--toc',
-            \ '--css', b:pandoc_preview_css,
-            \ '--template='.b:pandoc_preview_template,
             \ '--from='.g:pandoc_preview_format,
             \ '-o', a:outputPath
-        \ ],
+        \ ]
+
+    if exists('b:pandoc_preview_template')
+        call add(args, '--template='.b:pandoc_preview_template)
+    endif
+
+    if exists('b:pandoc_preview_css')
+        call add(args, '--css')
+        call add(args, b:pandoc_preview_css)
+    endif
+
+    let job_id = jobstart(args,
         \ extend({'shell': 'pandoc'}, s:callbacks))
 
     if job_id == 0
@@ -64,7 +73,7 @@ fu! s:outputPath()
 endfu
 
 fu! s:pandocRender()
-    " Only update if pandoc is done and if buffer has changed
+    " Only update if pandoc is not running and if buffer has changed
     if exists('b:pandoc_running') && b:pandoc_running || !s:bufferChanged()
         return
     endif
@@ -101,16 +110,18 @@ endfu
 fu! pandoc#preview#StartPreview()
     " don't start preview if already active
     if b:pandoc_preview_live_server_id != 0
+        echo 'Preview already active'
         return
     endif
 
-    call s:startLiveServer(s:outputPath())
-
     augroup pandoc-preview
-        " turn previous autocmd of this group
+        " turn off previous autocmd of this group
         autocmd!
 
         autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI <buffer> call s:pandocRender()
         autocmd BufUnload <buffer> call pandoc-preview#StopPreview()
     augroup END
+
+    call s:pandocRender()
+    call s:startLiveServer(s:outputPath())
 endfu
