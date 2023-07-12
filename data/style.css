@@ -19,10 +19,23 @@
     --toc-width: 20em;
 }
 
-header {
-  border-bottom: 1rem var(--background-alt2) solid;
-  grid-column: 2;
-  grid-row: 1;
+/* TOP */
+
+.title {
+  font-size: 50px;
+  text-align: center;
+  border: 0em;
+}
+.subtitle {
+  font-style: italic;
+  margin-bottom: -0.5em;
+  text-align: center;
+}
+.date {
+  color: #777;
+  font-style: italic;
+  margin-bottom: 2em;
+  text-align: center;
 }
 
 body {
@@ -78,34 +91,12 @@ table td { /* Table cell */
   vertical-align: top;
 }
 
-a { /* Hyperlink */
-  color: var(--text-alt-light);
-  text-decoration: none;
-}
+/* HEADERS */
 
-a:visited {
-  color: var(--text-alt-dark);
-}
-
-a:hover {
-  color: var(--text-alt);
-}
-
-.title {
-  font-size: 50px;
-  text-align: center;
-  border: 0em;
-}
-.subtitle {
-  font-style: italic;
-  margin-bottom: -0.5em;
-  text-align: center;
-}
-.date {
-  color: #777;
-  font-style: italic;
-  margin-bottom: 2em;
-  text-align: center;
+header {
+  border-bottom: 1rem var(--background-alt2) solid;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -157,4 +148,19 @@ h6 {
   padding-right: 1em;
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* Hyperlink items in TOC */
+
+a {
+  color: var(--text-alt-light);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--text-alt-dark);
+}
+
+a:hover {
+  color: var(--text-alt);
 }
